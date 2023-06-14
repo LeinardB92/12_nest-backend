@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  # Nombre del servicio de base de datos, puede ser cualquier nombre.
+  db:
+    # Nombre que le que le queremos dar al contenedor. 
+    container_name: mean-db
+    # Es la image que queremos usar, se aconseja colocar una versión específica.
+    image: mongo:5.0.16
+    # La imagen de mongo grabará la basse de datos en este directorio. 
+    volumes:
+      - ./mongo:/data/db
+    # Dado que estaremos trabajando con contenedores, son los puertos, los que nos permitirán comunicarnos desde el frontend o el backend hacia la base de datos, será a través de los puertos que se conseguirá.
+    # El puerto por default de mongodb es el 27017
+    ports:
+      # la siguiente sintaxis está diciendo: Docker, mapea el puerto 27017 de mi equipo con el puerto 27017 del contenedor
+      - 27017:27017
+    # Para que la basse de datos se actualice cada que se reinicie dockers desktop.
+    restart: always
