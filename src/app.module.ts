@@ -5,11 +5,14 @@ import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
-    AuthModule, 
-    MongooseModule.forRoot(process.env.MONGO_URI),
-    ConfigModule.forRoot()
+    ConfigModule.forRoot(),
+    MongooseModule.forRoot(process.env.MONGO_URI ),
+    // MongooseModule.forRoot('mongodb://localhost:27017' ),
+    AuthModule
   ],
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(){console.log(typeof(process.env.MONGO_URI))}
+}
