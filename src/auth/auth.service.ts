@@ -8,6 +8,8 @@ import * as bcryptjs from "bcryptjs";
 import { CreateUserDto } from './dto/create-user.dto';
 import { JwtPayload } from './interfaces/jwt-payload';
 import { LoginDto } from './dto/login.dto';
+import { LoginResponse } from './interfaces/login-response';
+import { RegisterUserDto } from './dto/register-user.dto';
 import { UpdateAuthDto } from './dto/update-auth.dto';
 import { User } from './entities/user.entity';
 
@@ -44,8 +46,18 @@ export class AuthService {
   }
 
 
-  //La idea de este login es que nos retorne al usuario y el Token
-  async login(loginDto : LoginDto){
+  async register( registerDto: RegisterUserDto ): Promise<LoginResponse> {
+    const user = await this.create( registerDto );
+
+    return {
+      user: user,
+      token: this.getJwtToken({ id: user._id })
+    }
+  }
+  
+
+  //La idea de este login es que nos retorne al usuario y Token existentes
+  async login(loginDto : LoginDto): Promise<LoginResponse>{
     const {email, password} = loginDto;
     const user = await this.userModel.findOne({email : email});
     
