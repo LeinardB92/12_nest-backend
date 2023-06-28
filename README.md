@@ -5,4 +5,4 @@ Para levantar la base de datos en Docker.
 docker compose up -d
 ```
 
-Copiar el ```.env.template``` y renombrarlo a ```.env```
+duplicar el archivo ```.env.template```, esa copia la renombras ```.env``` y colocas los datos que se requieren.
