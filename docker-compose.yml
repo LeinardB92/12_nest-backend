@@ -6,7 +6,7 @@ services:
     # Nombre que le que le queremos dar al contenedor. 
     container_name: mean-db
     # Es la image que queremos usar, se aconseja colocar una versión específica.
-    image: mongo:5.0.16
+    image: mongo:6.0.7
     # La imagen de mongo grabará la basse de datos en este directorio. 
     volumes:
       - ./mongo:/data/db
